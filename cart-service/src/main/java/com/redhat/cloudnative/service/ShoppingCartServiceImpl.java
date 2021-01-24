@@ -1,5 +1,6 @@
 package com.redhat.cloudnative.service;
 
+import com.redhat.cloudnative.InfinispanClientApp;
 import com.redhat.cloudnative.model.Product;
 import com.redhat.cloudnative.model.ShoppingCart;
 import com.redhat.cloudnative.model.ShoppingCartItem;
@@ -25,6 +26,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     private static final Logger log = LoggerFactory.getLogger(ShoppingCartServiceImpl.class);
 
     // TODO Inject RemoteCache
+    @Inject
+    @Remote(InfinispanClientApp.CACHE_NAME)
+    RemoteCache<String, ShoppingCart> carts;
 
     @Inject
     PromotionService ps;

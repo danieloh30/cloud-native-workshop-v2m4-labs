@@ -6,26 +6,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import org.infinispan.protostream.annotations.ProtoFactory;
+import org.infinispan.protostream.annotations.ProtoField;
+
 public class ShoppingCart {
 
-
     private double cartItemTotal;
-
     private double cartItemPromoSavings;
-
     private double shippingTotal;
-
     private double shippingPromoSavings;
-
     private double cartTotal;
-
     private String cartId;
-
     private List<ShoppingCartItem> shoppingCartItemList = new ArrayList<ShoppingCartItem>();
 
     public ShoppingCart() {
     }
 
+    @ProtoFactory
     public ShoppingCart(double cartItemTotal, double cartItemPromoSavings, double shippingTotal, double shippingPromoSavings, double cartTotal, String cartId, List<ShoppingCartItem> shoppingCartItemList) {
         this.cartItemTotal = Objects.requireNonNull(cartItemTotal);
         this.cartItemPromoSavings = Objects.requireNonNull(cartItemPromoSavings);
@@ -40,6 +37,52 @@ public class ShoppingCart {
         this.cartId = cartId;
     }
 
+    @ProtoField(number = 1, required = false)
+    public double getCartItemTotal() {
+        return cartItemTotal;
+    }
+
+    public void setCartItemTotal(double cartItemTotal) {
+        this.cartItemTotal = cartItemTotal;
+    }
+
+    @ProtoField(number = 2)
+    public double getCartItemPromoSavings() {
+        return cartItemPromoSavings;
+    }
+
+    public void setCartItemPromoSavings(double cartItemPromoSavings) {
+        this.cartItemPromoSavings = cartItemPromoSavings;
+    }
+
+    @ProtoField(number = 3)
+    public double getShippingTotal() {
+        return shippingTotal;
+    }
+
+    public void setShippingTotal(double shippingTotal) {
+        this.shippingTotal = shippingTotal;
+    }
+
+    @ProtoField(number = 4)
+    public double getShippingPromoSavings() {
+        return shippingPromoSavings;
+    }
+
+    public void setShippingPromoSavings(double shippingPromoSavings) {
+        this.shippingPromoSavings = shippingPromoSavings;
+    }
+
+    @ProtoField(number = 5)
+    public double getCartTotal() {
+        return cartTotal;
+    }
+
+    public void setCartTotal(double cartTotal) {
+        this.cartTotal = cartTotal;
+    }
+
+    @ProtoField(number = 6)
     public String getCartId() {
         return cartId;
     }
@@ -48,7 +91,7 @@ public class ShoppingCart {
         this.cartId = cartId;
     }
 
-    public List<ShoppingCartItem> getShoppingCartItemList() {
+   public List<ShoppingCartItem> getShoppingCartItemList() {
         return shoppingCartItemList;
     }
 
@@ -83,51 +126,10 @@ public class ShoppingCart {
         return removed;
 
     }
-
-    public double getCartItemTotal() {
-        return cartItemTotal;
-    }
-
-    public void setCartItemTotal(double cartItemTotal) {
-        this.cartItemTotal = cartItemTotal;
-    }
-
-    public double getShippingTotal() {
-        return shippingTotal;
-    }
-
-    public void setShippingTotal(double shippingTotal) {
-        this.shippingTotal = shippingTotal;
-    }
-
-    public double getCartTotal() {
-        return cartTotal;
-    }
-
-    public void setCartTotal(double cartTotal) {
-        this.cartTotal = cartTotal;
-    }
-
-    public double getCartItemPromoSavings() {
-        return cartItemPromoSavings;
-    }
-
-    public void setCartItemPromoSavings(double cartItemPromoSavings) {
-        this.cartItemPromoSavings = cartItemPromoSavings;
-    }
-
-    public double getShippingPromoSavings() {
-        return shippingPromoSavings;
-    }
-
-    public void setShippingPromoSavings(double shippingPromoSavings) {
-        this.shippingPromoSavings = shippingPromoSavings;
-    }
-
+    
     @Override
     public String toString() {
         return Json.encode(this);
     }
-
 
 }

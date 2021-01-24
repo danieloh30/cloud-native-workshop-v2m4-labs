@@ -4,6 +4,9 @@ import io.vertx.core.json.Json;
 
 import java.util.Objects;
 
+import org.infinispan.protostream.annotations.ProtoFactory;
+import org.infinispan.protostream.annotations.ProtoField;
+
 public class ShoppingCartItem {
 
     private double price;
@@ -15,6 +18,7 @@ public class ShoppingCartItem {
 
     }
 
+    @ProtoFactory
     public ShoppingCartItem(double price, int quantity, double promoSavings, Product product) {
         this.price = Objects.requireNonNull(price);
         this.quantity = Objects.requireNonNull(quantity);
@@ -22,6 +26,7 @@ public class ShoppingCartItem {
         this.product = Objects.requireNonNull(product);
     }
 
+    @ProtoField(number = 1)
     public double getPrice() {
         return price;
     }
@@ -30,14 +35,7 @@ public class ShoppingCartItem {
         this.price = price;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
+    @ProtoField(number = 2)
     public int getQuantity() {
         return quantity;
     }
@@ -46,6 +44,7 @@ public class ShoppingCartItem {
         this.quantity = quantity;
     }
 
+    @ProtoField(number = 3)
     public double getPromoSavings() {
         return promoSavings;
     }
@@ -59,5 +58,13 @@ public class ShoppingCartItem {
         return Json.encode(this);
     }
 
+    @ProtoField(number = 4)
+    public Product getProduct() {
+        return product;
+    }
 
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+    
 }
